@@ -5,14 +5,21 @@ export default function DiaryAddProductForm({ date, onAdded }) {
   const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [grams, setGrams] = useState('')
-  function submit(event) {
+  const [error, setError] = useState('')
+  async function submit(event) {
     event.preventDefault()
-    if (!name.trim() || Number(grams) <= 0) return
-    dispatch(addProduct({ date, name: name.trim(), grams: Number(grams) }))
-    setName(''); setGrams(''); onAdded?.()
+    const result = await dispatch(addProduct({ date, name, grams: Number(grams) }))
+    if (addProduct.rejected.match(result)) {
+      setError(result.error.message)
+      return
+    }
+    setName('')
+    setGrams('')
+    setError('')
+    onAdded?.()
   }
   return <form className="diary-form" onSubmit={submit}>
-    <label><span>Product name</span><input list="diary-product-options" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter product name" required /></label>
+    <label><span>Product name</span><input list="diary-product-options" value={name} aria-invalid={Boolean(error)} aria-describedby={error ? 'product-error' : undefined} onChange={(e) => { setName(e.target.value); setError('') }} placeholder="Enter product name" required />{error && <small id="product-error" role="alert">{error}</small>}</label>
     <datalist id="diary-product-options">
       {Object.keys(PRODUCT_CATALOG).map((product) => <option key={product} value={product} />)}
     </datalist>
