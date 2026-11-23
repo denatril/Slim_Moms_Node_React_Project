@@ -1,4 +1,36 @@
-* { box-sizing: border-box; }
-body { margin: 0; font-family: Arial, sans-serif; background: #fff; }
-button, input { font: inherit; }
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  font-family: "Verdana", sans-serif;
+  background-color: #ffffff;
+  color: #212121;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 #root { min-height: 100vh; }
+button, input { font: inherit; }

@@ -1,42 +1,37 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
-import { Provider, useSelector } from 'react-redux'
-import { store } from './redux/store'
+import { lazy, Suspense } from 'react'
+import { useSelector } from 'react-redux'
+import { Routes, Route, Navigate, NavLink, Outlet } from 'react-router-dom'
 import './components/diary.css'
 
-const DiaryPage = lazy(() => import('./pages/diary-page'))
-const CalculatorPage = lazy(() => import('./pages/calculator-page'))
+const Login = lazy(() => import('./pages/login-page/login-page'))
+const Register = lazy(() => import('./pages/registration-page'))
+const Diary = lazy(() => import('./pages/diary-page'))
+const Calculator = lazy(() => import('./pages/calculator-page'))
 
-function FeatureRoutes() {
-  const loggedIn = useSelector((state) => state.auth?.isLoggedIn === true)
-  const [hash, setHash] = useState(window.location.hash)
-  const path = window.location.pathname.replace(/\/$/, '')
-  const preview = import.meta.env.DEV && path === ''
-  const calculator = preview ? hash === '#calculator' : path === '/calculator'
-
-  useEffect(() => {
-    const update = () => setHash(window.location.hash)
-    window.addEventListener('hashchange', update)
-    return () => window.removeEventListener('hashchange', update)
-  }, [])
-
-  if (!preview && !loggedIn) {
-    return <main><p>Please log in to access your diary and calculator.</p></main>
-  }
-
-  return (
-    <>
-      {preview && (
-        <nav className="preview-nav" aria-label="Page preview">
-          <a href="#diary" aria-current={!calculator ? 'page' : undefined}>Diary</a>
-          <a href="#calculator" aria-current={calculator ? 'page' : undefined}>Calculator</a>
-        </nav>
-      )}
-      <Suspense fallback={<p role="status">Loading…</p>}>
-        {calculator ? <CalculatorPage /> : <DiaryPage />}
-      </Suspense>
-    </>
-  )
+function PrivatePages() {
+  const loggedIn = useSelector((state) => state.auth.isLoggedIn)
+  if (!loggedIn) return <Navigate to="/login" replace />
+  return <>
+    <nav className="preview-nav" aria-label="Main navigation">
+      <NavLink to="/diary">Diary</NavLink>
+      <NavLink to="/calculator">Calculator</NavLink>
+    </nav>
+    <Outlet />
+  </>
 }
+
 export default function App() {
-  return <Provider store={store}><FeatureRoutes /></Provider>
+  const loggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const diary = <Navigate to="/diary" replace />
+  return <Suspense fallback={<p role="status">Loading…</p>}>
+    <Routes>
+      <Route path="/login" element={loggedIn ? diary : <Login />} />
+      <Route path="/register" element={loggedIn ? diary : <Register />} />
+      <Route element={<PrivatePages />}>
+        <Route path="/diary" element={<Diary />} />
+        <Route path="/calculator" element={<Calculator />} />
+      </Route>
+      <Route path="*" element={<Navigate to={loggedIn ? '/diary' : '/login'} replace />} />
+    </Routes>
+  </Suspense>
 }

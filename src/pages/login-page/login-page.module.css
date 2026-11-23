@@ -1,0 +1,95 @@
+.page {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 175px;
+  background-color: #ffffff;
+}
+
+.container {
+  width: 100%;
+  padding: 0 20px;
+}
+
+/* Tablet (768px - 1279px) */
+@media screen and (min-width: 768px) {
+  .page {
+    min-height: 100vh;
+    padding-top: 237px;
+    padding-bottom: 434px;
+    background-repeat: no-repeat;
+    background-image:
+      url("../../assets/images/tablet_backround_strawberry-1x.png"),
+      url("../../assets/images/tablet_backround_banana-1x.png"),
+      url("../../assets/images/tablet_backround_leaves-1x.png"),
+      url("../../assets/images/tablet_backround_gray-1x.png");
+    background-position:
+      right 0px bottom 228px,
+      right 0px bottom 0px,
+      right 36px bottom 299px,
+      right 0px bottom 0px;
+    background-size:
+      291px auto,
+      524px auto,
+      740px auto,
+      553px auto;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .page {
+      background-image:
+        url("../../assets/images/tablet_backround_strawberry-2x.png"),
+        url("../../assets/images/tablet_backround_banana-2x.png"),
+        url("../../assets/images/tablet_backround_leaves-2x.png"),
+        url("../../assets/images/tablet_backround_gray-2x.png");
+    }
+  }
+
+  .container {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+}
+
+/* Masaüstü (1280px+) */
+@media screen and (min-width: 1280px) {
+  .page {
+    min-height: 100vh;
+    padding-top: 220px;
+    padding-bottom: 180px;
+    background-repeat: no-repeat;
+    background-image:
+      url("../../assets/images/desktop_backround-1x.png"),
+      url("../../assets/images/desktop_backround_gray-1x.png");
+    background-position:
+      right 0px bottom 0px,
+      right 0px bottom 0px;
+    background-size:
+      980px auto,
+      602px auto;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .page {
+      background-image:
+        url("../../assets/images/desktop_backround-2x.png"),
+        url("../../assets/images/desktop_backround_gray-2x.png");
+    }
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
