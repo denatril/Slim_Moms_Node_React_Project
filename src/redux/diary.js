@@ -13,10 +13,11 @@ export const addProduct = createAsyncThunk('diary/addProduct', async (product) =
   const name = Object.keys(PRODUCT_CATALOG).find(
     (item) => item.toLowerCase() === product.name.trim().toLowerCase(),
   )
+  if (!name) throw new Error("Choose a product from the catalogue.")
   return {
     ...product,
-    name: name ?? product.name.trim(),
-    calories: name ? Math.round(PRODUCT_CATALOG[name] * product.grams / 100) : null,
+    name,
+    calories: Math.round(PRODUCT_CATALOG[name] * product.grams / 100),
     id: crypto.randomUUID(),
   }
 })
@@ -25,7 +26,8 @@ const slice = createSlice({
   name: 'diary', initialState: { products: [], profile: null },
   reducers: {
     saveCalculation(state, action) {
-      state.profile = action.payload
+      // Sample calculation response until the API supplies recommendations.
+      state.profile = { foods: ['Flour products', 'Milk', 'Red meat', 'Smoked meats'], ...action.payload }
     },
   },
   extraReducers: (builder) => builder
