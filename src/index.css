@@ -31,3 +31,6 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+#root { min-height: 100vh; }
+button, input { font: inherit; }
