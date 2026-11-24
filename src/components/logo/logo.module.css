@@ -1,0 +1,63 @@
+.logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.mobileImage {
+    display: none;
+}
+
+.desktopImage {
+    display: block;
+    width: 167px;
+    height: 66px;
+    object-fit: contain;
+}
+
+/* MOBILE */
+@media screen and (max-width: 767px) {
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .mobileImage {
+        display: block;
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
+
+    .desktopImage {
+        display: none;
+    }
+}
+
+/* TABLET AND DESKTOP */
+@media screen and (min-width: 768px) {
+    .logo {
+        width: 167px;
+        height: 66px;
+    }
+}
+
+/* DESKTOP */
+@media screen and (min-width: 1280px) {
+    .logo {
+        position: relative;
+        width: 187px;
+        padding-right: 20px;
+    }
+
+    .logo::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 2px;
+        width: 2px;
+        height: 32px;
+        background-color: #e0e0e0;
+    }
+}

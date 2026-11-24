@@ -1,12 +1,20 @@
+@import 'modern-normalize/modern-normalize.css';
+
 :root {
   color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: "Verdana", sans-serif;
-  background-color: #ffffff;
   color: #212121;
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,5 +40,11 @@ img {
   height: auto;
 }
 
-#root { min-height: 100vh; }
-button, input { font: inherit; }
+#root {
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}

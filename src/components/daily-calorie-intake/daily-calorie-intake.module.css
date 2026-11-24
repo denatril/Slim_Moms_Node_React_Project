@@ -1,0 +1,96 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.title {
+    margin: 0 0 24px;
+    max-width: 460px;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: #212121;
+}
+
+.caloriesValue {
+    margin: 0 0 28px;
+    padding-bottom: 24px;
+    width: 100%;
+    max-width: 330px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #264061;
+}
+
+.caloriesUnit {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.foodsSection {
+    width: 100%;
+    max-width: 330px;
+    text-align: left;
+    margin-bottom: 36px;
+}
+
+.foodsTitle {
+    margin: 0 0 16px;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #212121;
+}
+
+.foodsList {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.foodItem {
+    font-size: 14px;
+    line-height: 1.4;
+    color: #9b9faa;
+}
+
+.submitBtn {
+    min-width: 210px;
+    height: 44px;
+    padding: 0 25px;
+    border: none;
+    border-radius: 30px;
+    background-color: #fc842d;
+    box-shadow: 0 4px 10px rgba(252, 132, 45, 0.5);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.submitBtn:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.submitBtn:focus-visible {
+    outline: 2px solid #264061;
+    outline-offset: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    .title {
+        font-size: 26px;
+    }
+
+    .caloriesValue {
+        font-size: 48px;
+    }
+}
