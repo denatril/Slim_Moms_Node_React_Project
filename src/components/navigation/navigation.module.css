@@ -1,0 +1,49 @@
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #9b9faa;
+    transition: color 200ms ease;
+}
+
+.link:hover,
+.link:focus-visible,
+.active {
+    color: #9b9faa;
+}
+
+@media screen and (min-width: 768px) {
+    .list {
+        gap: 20px;
+    }
+
+    .link {
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .nav {
+        padding-bottom: 0;
+    }
+
+    .list {
+        gap: 24px;
+    }
+}
