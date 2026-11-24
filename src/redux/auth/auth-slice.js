@@ -14,20 +14,27 @@ const authSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addMatcher(isAnyOf(logIn.pending, register.pending), (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addMatcher(isAnyOf(logIn.fulfilled, register.fulfilled), (state, action) => {
+      .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addMatcher(isAnyOf(logIn.rejected, register.rejected), (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload.user;
         state.isLoading = false;
-        state.error = action.payload;
-      });
+      })
+      .addMatcher(isAnyOf(logIn.pending, register.pending), (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addMatcher(
+        isAnyOf(logIn.rejected, register.rejected),
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        },
+      );
   },
 });
 

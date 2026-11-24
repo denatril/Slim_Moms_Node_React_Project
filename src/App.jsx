@@ -7,7 +7,7 @@ import { MainPage } from './pages/main-page/main-page';
 import './components/diary.css';
 
 const Login = lazy(() => import('./pages/login-page/login-page'));
-const Register = lazy(() => import('./pages/registration-page'));
+const Register = lazy(() => import('./pages/registration-page/registration-page'));
 const Diary = lazy(() => import('./pages/diary-page'));
 const Calculator = lazy(() => import('./pages/calculator-page'));
 
