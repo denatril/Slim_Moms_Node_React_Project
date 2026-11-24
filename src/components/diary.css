@@ -1,0 +1,100 @@
+/* Mobile layout */
+.diary-layout { display: grid; grid-template-columns: 1fr; min-height: 70vh; color: #212121; text-align: left; }
+.diary-main { padding: 32px 20px; }
+.diary-main h1 { font-size: 18px; margin: 0 0 12px; }
+.diary-main input { font: inherit; color: inherit; border: 0; border-bottom: 1px solid #dedede; padding: 12px 4px; min-width: 0; background: transparent; }
+.diary-main input:focus-visible, .diary-main button:focus-visible { outline: 2px solid #fc842d; outline-offset: 3px; }
+.diary-main .react-datepicker__input-container input { font-size: 26px; font-weight: 700; width: 180px; }
+.diary-form-wrap { display: none; }
+.diary-form-wrap.is-open { display: block; }
+.diary-back { display: block; border: 0; background: none; cursor: pointer; padding: 12px 0; }
+.diary-form { display: flex; flex-direction: column; align-items: stretch; gap: 24px; margin: 36px 0; }
+.diary-form label { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.diary-form label span { font-size: 12px; color: #727783; }
+.diary-form button, .diary-mobile-add { border: 0; border-radius: 50%; background: #fc842d; color: white; font-size: 24px; width: 44px; height: 44px; cursor: pointer; flex: none; }
+.diary-form button { align-self: center; }
+.diary-mobile-add { display: block; margin: 32px auto; }
+.diary-list { padding: 0; list-style: none; max-height: 300px; overflow: auto; }
+.diary-item { display: grid; grid-template-columns: minmax(0, 1fr) 50px 60px 24px; align-items: center; gap: 5px; border-bottom: 1px solid #e0e0e0; padding: 12px 0; font-size: 12px; }
+.diary-item button { border: 0; background: none; font-size: 22px; cursor: pointer; color: #9b9faa; }
+.diary-empty { color: #727783; font-size: 14px; }
+.right-sidebar { background: #f0f1f3; padding: 32px 20px; display: flex; flex-direction: column; gap: 24px; }
+.right-sidebar h2 { font-size: 14px; margin: 0 0 20px; }
+.right-sidebar dl, .right-sidebar p, .right-sidebar ul { font-size: 13px; color: #727783; }
+.right-sidebar dl div { display: flex; justify-content: space-between; gap: 24px; margin: 8px 0; }
+.right-sidebar dd { margin: 0; }
+.right-sidebar ul { padding-left: 18px; }
+
+.preview-nav { display: flex; gap: 24px; padding: 16px 20px; border-bottom: 1px solid #e0e0e0; }
+.preview-nav a { color: #414756; text-decoration: none; }
+.preview-nav a[aria-current="page"] { color: #212121; font-weight: 700; text-decoration: underline; }
+
+.diary-entry-open .diary-overview, .diary-entry-open .right-sidebar { display: none; }
+.diary-form button, .feature-button {
+  width: auto;
+  min-width: 140px;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 24px;
+  background: #fc842d;
+  color: #212121;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.diary-add-icon { display: none; }
+
+.calculator-main { padding: 32px 20px; }
+.calculator-main h1 { max-width: 32rem; margin: 0 0 32px; font-size: clamp(22px, 4vw, 34px); }
+.calculator-form { max-width: 510px; }
+.calculator-fields, .calculator-column { display: grid; gap: 24px; }
+.calculator-column label, .calculator-form legend { font-size: 14px; font-weight: 700; color: #565e6b; }
+.calculator-column input[type="number"] {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #dedede;
+  padding: 8px 0;
+  color: #212121;
+  background: transparent;
+}
+.calculator-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.calculator-form legend { padding: 0; }
+.calculator-options { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.calculator-options label { display: inline-flex; gap: 4px; align-items: center; }
+.calculator-options input { margin: 0; accent-color: #fc842d; }
+.calculator-form .feature-button { display: block; margin: 32px auto 0; }
+.calculator-error { color: #9c2525; font-size: 14px; }
+
+/* Tablet layout */
+@media (min-width: 601px) {
+  .diary-entry-open .diary-overview { display: block; }
+  .diary-entry-open .right-sidebar { display: flex; }
+  .diary-form button { min-width: 44px; width: 44px; padding: 0; color: #fff; font-size: 24px; }
+  .diary-add-icon { display: inline; }
+  .diary-add-text { display: none; }
+  .calculator-main { padding: 64px clamp(24px, 6vw, 90px); }
+  .calculator-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .calculator-column { align-content: start; }
+  .calculator-form .feature-button { margin-left: 0; }
+  .diary-main { padding: 64px clamp(24px, 6vw, 90px); }
+  .diary-form-wrap { display: block; }
+  .diary-back, .diary-mobile-add { display: none; }
+  .diary-form { flex-direction: row; align-items: end; }
+  .diary-form button { align-self: auto; }
+  .diary-item { grid-template-columns: minmax(0, 1fr) 70px 80px 32px; gap: 12px; font-size: 14px; }
+  .right-sidebar { flex-direction: row; gap: 60px; padding: 36px clamp(24px, 6vw, 90px); }
+  .right-sidebar section { flex: 1; }
+}
+
+/* Desktop layout */
+@media (min-width: 1024px) {
+  .diary-layout { grid-template-columns: minmax(0, 1fr) minmax(260px, 35%); }
+  .right-sidebar { flex-direction: column; gap: 36px; padding: 64px 32px; }
+  .right-sidebar section { flex: initial; }
+}
+
+.diary-calendar { display: flex; align-items: center; }
+.diary-calendar button[aria-label="Open calendar"] { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; color: #565e6b; cursor: pointer; }
+.diary-form small[role="alert"] { color: #9c2525; }
