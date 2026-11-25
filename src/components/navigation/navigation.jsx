@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import styles from './navigation.module.css';
 
 export function Navigation() {
@@ -6,19 +6,15 @@ export function Navigation() {
     <nav className={styles.nav} aria-label="Main navigation">
       <ul className={styles.list}>
         <li>
-          <a
-            href="#login"
-            className={`${styles.link} ${styles.active}`}
-            aria-current="page"
-          >
+          <Link to="/login" className={styles.link}>
             LOG IN
-          </a>
+          </Link>
         </li>
 
         <li>
-          <a href="#registration" className={styles.link}>
+          <Link to="/register" className={styles.link}>
             REGISTRATION
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
