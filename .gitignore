@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 documents/
+
+# Environment variables
+.env
+*.env
+!.env.template
