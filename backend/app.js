@@ -17,6 +17,10 @@ app.use((req, res) => {
 
 app.use((err, req, res, _next) => {
   const { status = 500, message = "Server error" } = err;
+  if (status >= 500) {
+    console.error(err);
+    return res.status(status).json({ message: "Server error" });
+  }
   res.status(status).json({ message });
 });
 

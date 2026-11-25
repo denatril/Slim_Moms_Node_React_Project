@@ -30,6 +30,9 @@ export const register = async (req, res, next) => {
       },
     });
   } catch (err) {
+    if (err.code === 11000) {
+      return res.status(409).json({ message: "Email in use" });
+    }
     next(err);
   }
 };

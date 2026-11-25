@@ -9,8 +9,14 @@ export const authenticate = async (req, res, next) => {
     return res.status(401).json({ message: "Not authorized" });
   }
 
+  let id;
   try {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
+    ({ id } = jwt.verify(token, process.env.JWT_SECRET));
+  } catch {
+    return res.status(401).json({ message: "Not authorized" });
+  }
+
+  try {
     const user = await User.findById(id);
 
     if (!user || !user.token || user.token !== token) {
@@ -19,7 +25,7 @@ export const authenticate = async (req, res, next) => {
 
     req.user = user;
     next();
-  } catch {
-    return res.status(401).json({ message: "Not authorized" });
+  } catch (err) {
+    next(err);
   }
 };
