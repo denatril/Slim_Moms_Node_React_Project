@@ -1,14 +1,21 @@
+
 import express from "express";
 import cors from "cors";
 import authRouter from "./routes/api/auth.js";
 import diaryRouter from "./routes/api/diary.js";
+import caloriesRouter from "./routes/api/calories.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./swagger.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use("/api/auth", authRouter);
+app.use("/api/calories", caloriesRouter);
 app.use("/api", diaryRouter);
 
 app.use((req, res) => {
