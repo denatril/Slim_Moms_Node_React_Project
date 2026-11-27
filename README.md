@@ -54,6 +54,8 @@ Canlı API, Render üzerinde `main` dalını izleyen bir **Web Service** olarak 
 
 `DB_HOST` bağlantı adresinde uygulamanın veritabanı adını belirtin. Render servisinin çıkış IP aralıklarına MongoDB Atlas’ta erişim izni verin. `JWT_SECRET` için Render’da rastgele bir değer üretin. Başlangıç komutu önce ürün kataloğunu kimliklerine göre günceller, ardından API’yi başlatır. Yeni bir servis kurarken aynı komutları içeren [Blueprint dosyasını](render.yaml) da kullanabilirsiniz.
 
+Ücretsiz Render planında, bir süre kullanılmayan API ilk istekte yeniden başlatılır. Bu yüzden ilk giriş işlemi daha uzun sürebilir.
+
 ### Frontend · GitHub Pages
 
 GitHub Pages kaynağını **GitHub Actions** olarak seçin. GitHub deposunda **Settings → Secrets and variables → Actions → Variables** altında `VITE_API_URL` değerini `https://slim-moms-node-react-project.onrender.com/api` olarak ayarlayın. **Deploy frontend** iş akışını `main` dalında çalıştırın.
