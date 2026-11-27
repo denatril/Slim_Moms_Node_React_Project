@@ -4,10 +4,10 @@ import logoImage from '../../images/logo.svg';
 import mobileLogoImage from '../../images/logo-mobile.svg';
 import styles from './logo.module.css';
 
-export function Logo({ onClick }) {
+export function Logo({ to, onClick }) {
   return (
     <Link
-      to="/diary"
+      to={to}
       className={styles.logo}
       aria-label="SlimMom"
       onClick={onClick}

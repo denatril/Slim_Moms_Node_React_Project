@@ -16,7 +16,7 @@ export function Header() {
   return (
     <header className={styles.header} data-private={isLoggedIn}>
       <div className={styles.container}>
-        <Logo />
+        <Logo to={isLoggedIn ? '/diary' : '/'} />
         <div className={isLoggedIn ? (open ? styles.menuOpen : styles.privateMenu) : undefined}>
           <Navigation privateLinks={isLoggedIn} onNavigate={() => setMenuKey(null)} />
         </div>
