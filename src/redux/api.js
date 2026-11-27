@@ -26,6 +26,9 @@ export const api = createApi({
   tagTypes: ['Day', 'Profile'],
   endpoints: (build) => ({
     logout: build.mutation({ query: () => ({ url: 'auth/logout', method: 'POST' }) }),
+    calculateCalories: build.mutation({
+      query: body => ({ url: 'calories', method: 'POST', body }),
+    }),
     login: build.mutation({ query: body => ({ url: 'auth/login', method: 'POST', body }) }),
     registerUser: build.mutation({ query: body => ({ url: 'auth/register', method: 'POST', body }) }),
     searchProducts: build.query({ query: search => ({ url: 'products', params: { search } }) }),

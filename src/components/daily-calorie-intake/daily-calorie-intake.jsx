@@ -1,8 +1,8 @@
 import styles from './daily-calorie-intake.module.css';
 
 export function DailyCalorieIntake({
-  calories = 2800,
-  forbiddenFoods = ['Flour products', 'Milk', 'Red meat', 'Smoked meats'],
+  calories,
+  forbiddenFoods,
   onStartLosingWeight,
 }) {
   return (

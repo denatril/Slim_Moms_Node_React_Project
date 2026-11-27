@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { calculateDailyCalories } from '../../utils/calorieCalculator';
+import { api, apiError } from '../../redux/api';
 import styles from './daily-calories-form.module.css';
 
 const INITIAL_VALUES = {
@@ -10,7 +10,8 @@ const INITIAL_VALUES = {
   bloodType: 1,
 };
 
-export function DailyCaloriesForm({ onOpenModal, onResult }) {
+export function DailyCaloriesForm({ onResult }) {
+  const [calculate, { isLoading }] = api.useCalculateCaloriesMutation();
   const [values, setValues] = useState(INITIAL_VALUES);
   const [error, setError] = useState('');
 
@@ -32,7 +33,7 @@ export function DailyCaloriesForm({ onOpenModal, onResult }) {
     if (!h || h < 100 || h > 250) {
       return 'Height must be between 100 and 250 cm.';
     }
-    if (!a || a < 18 || a > 100) {
+    if (!Number.isInteger(a) || a < 18 || a > 100) {
       return 'Age must be between 18 and 100 years.';
     }
     if (!current || current < 30 || current > 300) {
@@ -44,7 +45,7 @@ export function DailyCaloriesForm({ onOpenModal, onResult }) {
     return '';
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationError = validateForm();
 
@@ -53,9 +54,14 @@ export function DailyCaloriesForm({ onOpenModal, onResult }) {
       return;
     }
 
-    const result = calculateDailyCalories(values);
-    onResult?.(result);
-    onOpenModal?.();
+    setError('');
+    try {
+      const body = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Number(value)]));
+      const result = await calculate(body).unwrap();
+      onResult(result);
+    } catch (reason) {
+      setError(apiError(reason));
+    }
   };
 
   return (
@@ -145,8 +151,8 @@ export function DailyCaloriesForm({ onOpenModal, onResult }) {
           </p>
         )}
 
-        <button type="submit" className={styles.submitBtn}>
-          Start losing weight
+        <button disabled={isLoading} type="submit" className={styles.submitBtn}>
+          {isLoading ? 'Calculating…' : 'Start losing weight'}
         </button>
       </form>
     </section>
