@@ -54,7 +54,6 @@
     background: linear-gradient(to right, white 59.5%, #f0f1f3 59.5%);
   }
   .header[data-private="false"] {
-    width: fit-content;
     background-color: transparent;
   }
 }
