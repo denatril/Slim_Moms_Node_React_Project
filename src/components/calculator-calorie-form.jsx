@@ -1,3 +1,5 @@
+import RhFactor from './rh-factor'
+import { BLOOD_TYPES } from '../utils/blood-types'
 import { useState } from 'react'
 
 export default function CalculatorCalorieForm({ onCalculate, profile, pending }) {
@@ -18,7 +20,7 @@ export default function CalculatorCalorieForm({ onCalculate, profile, pending })
     }
 
     setError('')
-    onCalculate({ height, age, currentWeight: weight, desiredWeight: goal, bloodType: Number(data.get('bloodType')) })
+    onCalculate({ height, age, currentWeight: weight, desiredWeight: goal, bloodType: Number(data.get('bloodType')), rhFactor: data.get('rhFactor') || null })
   }
 
   return (
@@ -34,14 +36,15 @@ export default function CalculatorCalorieForm({ onCalculate, profile, pending })
           <fieldset>
             <legend>Blood type *</legend>
             <div className="calculator-options">
-              {[1, 2, 3, 4].map((type) => (
+              {BLOOD_TYPES.map(({ value: type, label }) => (
                 <label key={type}>
                   <input name="bloodType" type="radio" value={type} required defaultChecked={String(type) === String(profile?.bloodType ?? 1)} />
-                  {type}
+                  {label}
                 </label>
               ))}
             </div>
           </fieldset>
+          <RhFactor initialValue={profile?.rhFactor} />
         </div>
       </div>
       {error && <p role="alert" className="calculator-error">{error}</p>}
