@@ -35,7 +35,7 @@ export default function DiaryPage() {
           <DiaryDateCalendar date={date} onChange={(value) => value && setDate(value)} />
         </div>
         <div className={adding ? 'diary-form-wrap is-open' : 'diary-form-wrap'}>
-          <button ref={backButton} type="button" className="diary-back" onClick={closeAddForm}>← Back</button>
+          <button ref={backButton} type="button" className="diary-back" onClick={closeAddForm} aria-label="Back to diary">←</button>
           <DiaryAddProductForm date={selectedDate} onAdded={closeAddForm} />
         </div>
         <div className="diary-overview">

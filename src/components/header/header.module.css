@@ -19,6 +19,22 @@
     gap: 20px;
 }
 
+@media (max-width: 767px) {
+    .header { height: 80px; display: grid; align-items: center; }
+    .header[data-private="true"]:has(.account) { margin-bottom: 40px; }
+    .account {
+        position: absolute; top: 100%; inset-inline: 0; height: 40px;
+        display: flex; justify-content: flex-end; align-items: center;
+        padding-inline: 20px; background: #eff1f3;
+    }
+    .accountOpen { display: none; }
+}
+@media (min-width: 768px) {
+    .account, .accountOpen { margin-left: auto; }
+}
+@media (min-width: 1280px) {
+    .header[data-private="true"] { background: linear-gradient(to right, white 59.5%, #f0f1f3 59.5%); }
+}
 /* TABLET */
 @media screen and (min-width: 768px) {
     .header {
