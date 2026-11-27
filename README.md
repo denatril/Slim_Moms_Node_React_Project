@@ -6,7 +6,7 @@ Mobil, tablet ve masaüstünde çalışan bir kalori hesaplayıcı ve yemek gün
 
 - [SlimMom uygulamasını aç](https://denatril.github.io/Slim_Moms_Node_React_Project/)
 - [Swagger üzerinden canlı API uç noktalarını incele](https://slim-moms-node-react-project.onrender.com/api-docs/)
-- [Canlı site için PageSpeed Insights analizi başlat](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fdenatril.github.io%2FSlim_Moms_Node_React_Project%2F)
+- 27 Kasım 2026 PageSpeed Insights ana sayfa ölçümünde her iki cihazda performans 100, erişilebilirlik 96, en iyi uygulamalar 100 ve SEO 100 puan aldı. [Mobil rapor](https://pagespeed.web.dev/analysis/https-denatril-github-io-Slim_Moms_Node_React_Project/6p0detyo60wre8kk1vwigk?form_factor=mobile) · [Masaüstü raporu](https://pagespeed.web.dev/analysis/https-denatril-github-io-Slim_Moms_Node_React_Project/6p0detyo60wre8kk1vwigk?form_factor=desktop)
 
 ## Yerel kurulum
 
