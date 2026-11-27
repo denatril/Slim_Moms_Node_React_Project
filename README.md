@@ -32,3 +32,9 @@ Vite’ın terminalde verdiği adresi açın. Frontend farklı bir API kullanaca
 ## Kontrol
 
 Proje kökünde `npm run lint` ve `npm run build` çalıştırın. Misafir olarak kalori hesaplayabilir, kayıt olup giriş yaptıktan sonra günlükte ürün arayabilir, ekleyebilir ve silebilirsiniz.
+
+## Yayın
+
+Render üzerinde bu depodan bir Blueprint oluşturun. Üretim MongoDB adresini Render’ın istediği `DB_HOST` alanına girin ve veritabanında servisin bağlantısına izin verin. JWT anahtarı Render tarafından oluşturulur. Başlangıçta ürün kataloğu mevcut kimlikler üzerinden güncellenir. Servisin HTTPS adresinde `/api-docs/` açılmalıdır.
+
+GitHub deposunda Pages kaynağını **GitHub Actions** olarak seçin. Actions repository variable olarak `VITE_API_URL` değerini canlı API adresine ayarlayın (sonu `/api`). Ardından **Deploy frontend** iş akışını `main` dalında çalıştırın. Proje alt yolu Pages ayarlarından alınır. İç sayfalara doğrudan gidildiğinde Pages’in özel 404 belgesi React uygulamasını yükler; ilk HTML isteğinin HTTP durum kodu 404 olur.
