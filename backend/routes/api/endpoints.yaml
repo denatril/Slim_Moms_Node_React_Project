@@ -1,0 +1,176 @@
+paths:
+  /api/auth/register:
+    post:
+      summary: Register a user
+      tags:
+      - Auth
+      responses:
+        '201':
+          description: User created
+        '400':
+          description: Invalid input
+        '409':
+          description: Email already registered
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - email
+              - password
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+  /api/auth/login:
+    post:
+      summary: Sign in
+      tags:
+      - Auth
+      responses:
+        '200':
+          description: Token and user
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+  /api/auth/logout:
+    post:
+      summary: Sign out
+      tags:
+      - Auth
+      responses:
+        '204':
+          description: Signed out
+        '401':
+          description: Unauthorized
+      security:
+      - bearerAuth: []
+  /api/products:
+    get:
+      summary: Search products by name
+      tags:
+      - Diary
+      responses:
+        '200':
+          description: Matching products
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: search
+        in: query
+        required: true
+        schema:
+          type: string
+  /api/diary/{date}:
+    get:
+      summary: Get entries and consumed calories
+      tags:
+      - Diary
+      responses:
+        '200':
+          description: Day details
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+  /api/diary/{date}/entries:
+    post:
+      summary: Add a consumed product
+      tags:
+      - Diary
+      responses:
+        '201':
+          description: Entry created
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '404':
+          description: Product not found
+        '422':
+          description: Calories unavailable
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - productId
+              - grams
+              properties:
+                productId:
+                  type: string
+                grams:
+                  type: integer
+  /api/diary/{date}/entries/{entryId}:
+    delete:
+      summary: Delete a diary entry
+      tags:
+      - Diary
+      responses:
+        '204':
+          description: Entry removed
+        '400':
+          description: Invalid input
+        '401':
+          description: Unauthorized
+        '404':
+          description: Entry not found
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: entryId
+        in: path
+        required: true
+        schema:
+          type: string

@@ -1,12 +1,6 @@
+import { getCalorieResult } from "../services/calories.js";
 import { caloriesSchema } from "../schemas/calories-schema.js";
 import { Calorie } from "../models/calorie.js";
-
-const FORBIDDEN_FOODS_BY_BLOOD_TYPE = {
-  1: ["Flour products", "Milk", "Red meat", "Smoked meats"],
-  2: ["Meat", "Dairy products", "Wheat", "Tomatoes"],
-  3: ["Corn", "Lentils", "Peanuts", "Sesame seeds"],
-  4: ["Red meat", "Kidney beans", "Seeds", "Corn"],
-};
 
 export const savePrivateCalories = async (req, res, next) => {
   try {
@@ -26,17 +20,7 @@ export const savePrivateCalories = async (req, res, next) => {
       bloodType,
     } = value;
 
-    const calories = Math.round(
-      10 * currentWeight +
-      6.25 * height -
-      5 * age -
-      161 -
-      10 * (currentWeight - desiredWeight)
-    );
-
-    const forbiddenFoods =
-      FORBIDDEN_FOODS_BY_BLOOD_TYPE[bloodType] ||
-      FORBIDDEN_FOODS_BY_BLOOD_TYPE[1];
+    const { calories, forbiddenFoods } = await getCalorieResult(value);
 
     const savedData = await Calorie.findOneAndUpdate(
       { owner: req.user._id },

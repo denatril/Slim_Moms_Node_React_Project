@@ -14,7 +14,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "/",
       },
     ],
     components: {
@@ -27,7 +27,7 @@ const options = {
       },
     },
   },
-  apis: [`${__dirname}/routes/api/*.js`],
+  apis: [`${__dirname}/routes/api/*.js`, `${__dirname}/routes/api/*.yaml`],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
