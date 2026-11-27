@@ -13,14 +13,8 @@ import strawberry from '../../images/cilek.svg';
 
 import styles from './main-page.module.css';
 
-const DEFAULT_RESULT = {
-    calories: 2800,
-    forbiddenFoods: ['Flour products', 'Milk', 'Red meat', 'Smoked meats'],
-};
-
 export function MainPage() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [calorieResult, setCalorieResult] = useState(DEFAULT_RESULT);
+    const [calorieResult, setCalorieResult] = useState(null);
 
     return (
         <div className={styles.pageWrapper}>
@@ -35,22 +29,19 @@ export function MainPage() {
                 </div>
 
                 <div className={styles.container}>
-                    <DailyCaloriesForm
-                        onResult={setCalorieResult}
-                        onOpenModal={() => setIsModalOpen(true)}
-                    />
+                    <DailyCaloriesForm onResult={setCalorieResult} />
                 </div>
             </main>
 
             <Modal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                isOpen={Boolean(calorieResult)}
+                onClose={() => setCalorieResult(null)}
             >
-                <DailyCalorieIntake
+                {calorieResult && <DailyCalorieIntake
                     calories={calorieResult.calories}
                     forbiddenFoods={calorieResult.forbiddenFoods}
-                    onStartLosingWeight={() => setIsModalOpen(false)}
-                />
+                    onStartLosingWeight={() => setCalorieResult(null)}
+                />}
             </Modal>
         </div>
     );
