@@ -1,19 +1,34 @@
-# React + Vite
+# SlimMom
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mobil, tablet ve masaüstünde çalışan bir kalori hesaplayıcı ve yemek günlüğü. Arayüz React ve Vite, API Express ve MongoDB kullanır.
 
-Currently, two official plugins are available:
+## Yerel kurulum
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Node.js 25 ve erişilebilir bir MongoDB veritabanı ile test edilmiştir. İlk terminalde:
 
-## React Compiler
+```sh
+cd backend
+npm ci
+cp .env.template .env
+```
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+`backend/.env` içinde `DB_HOST` için proje veritabanının bağlantı adresini, `JWT_SECRET` için rastgele bir gizli değer girin. Varsayılan API portu 3000’dir. Ürünleri yükleyip API’yi başlatın:
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+```sh
+npm run seed
+npm run dev
+```
 
-## Expanding the ESLint configuration
+İkinci terminalde, proje kökünde:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```sh
+npm ci
+cp .env.template .env
+npm run dev
+```
+
+Vite’ın terminalde verdiği adresi açın. Frontend farklı bir API kullanacaksa kökteki `VITE_API_URL` değerini değiştirin. Swagger arayüzü varsayılan olarak http://localhost:3000/api-docs/ adresindedir.
+
+## Kontrol
+
+Proje kökünde `npm run lint` ve `npm run build` çalıştırın. Misafir olarak kalori hesaplayabilir, kayıt olup giriş yaptıktan sonra günlükte ürün arayabilir, ekleyebilir ve silebilirsiniz.

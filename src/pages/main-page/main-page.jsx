@@ -1,15 +1,17 @@
 
 import { useState } from 'react';
 
-import { Header } from '../../components/header/header';
 import { DailyCaloriesForm } from '../../components/daily-calories-form/daily-calories-form';
 import { Modal } from '../../components/modal/modal';
 import { DailyCalorieIntake } from '../../components/daily-calorie-intake/daily-calorie-intake';
 
 import vectorBg from '../../images/grialan.svg';
-import leaf from '../../images/yaprak.svg';
-import banana from '../../images/muz.svg';
-import strawberry from '../../images/cilek.svg';
+import leaf from '../../images/yaprak1.webp';
+import leafRetina from '../../images/yaprak2.webp';
+import banana from '../../images/muz1.webp';
+import bananaRetina from '../../images/muz2.webp';
+import strawberry from '../../images/cilek1.webp';
+import strawberryRetina from '../../images/cilek2.webp';
 
 import styles from './main-page.module.css';
 
@@ -18,14 +20,14 @@ export function MainPage() {
 
     return (
         <div className={styles.pageWrapper}>
-            <Header />
+
 
             <main className={styles.main}>
                 <div className={styles.decorLayer} aria-hidden="true">
                     <img src={vectorBg} alt="" className={styles.vectorBgImg} />
-                    <img src={leaf} alt="" className={styles.leafImg} />
-                    <img src={banana} alt="" className={styles.bananaImg} />
-                    <img src={strawberry} alt="" className={styles.strawberryImg} />
+                    <picture><source media="(min-width: 768px)" srcSet={`${leaf} 1x, ${leafRetina} 2x`} /><img alt="" className={styles.leafImg} /></picture>
+                    <picture><source media="(min-width: 768px)" srcSet={`${banana} 1x, ${bananaRetina} 2x`} /><img alt="" className={styles.bananaImg} /></picture>
+                    <picture><source media="(min-width: 768px)" srcSet={`${strawberry} 1x, ${strawberryRetina} 2x`} /><img alt="" className={styles.strawberryImg} /></picture>
                 </div>
 
                 <div className={styles.container}>

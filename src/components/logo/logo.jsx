@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 import logoImage from '../../images/logo.svg';
 import mobileLogoImage from '../../images/logo-mobile.svg';
@@ -5,8 +6,8 @@ import styles from './logo.module.css';
 
 export function Logo({ onClick }) {
   return (
-    <a
-      href="#top"
+    <Link
+      to="/diary"
       className={styles.logo}
       aria-label="SlimMom"
       onClick={onClick}
@@ -24,6 +25,6 @@ export function Logo({ onClick }) {
         alt="SlimMom"
         className={styles.desktopImage}
       />
-    </a>
+    </Link>
   );
 }

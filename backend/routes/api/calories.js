@@ -112,8 +112,8 @@ router.post("/", calculateCalories);
  *         description: Saved calorie information
  *       401:
  *         description: Unauthorized
- *       404:
- *         description: Calorie information not found
+ *       204:
+ *         description: No calorie profile has been saved yet
  */
 router.post("/private", authenticate, savePrivateCalories);
 router.get("/private", authenticate, getPrivateCalories);
