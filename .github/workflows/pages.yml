@@ -30,6 +30,10 @@ jobs:
         run: |
           case "$VITE_API_URL" in https://*/api) ;; *) echo "Set VITE_API_URL to the HTTPS API URL ending in /api"; exit 1 ;; esac
           npm run build -- --base "$BASE_PATH/"
+          for route in login register diary calculator; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
           cp dist/index.html dist/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
