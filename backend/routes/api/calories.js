@@ -46,6 +46,10 @@ const router = Router();
  *               desiredWeight:
  *                 type: number
  *                 example: 75
+ *               rhFactor:
+ *                 type: string
+ *                 nullable: true
+ *                 enum: ["+", "-", null]
  *               bloodType:
  *                 type: integer
  *                 enum: [1, 2, 3, 4]
@@ -90,6 +94,10 @@ router.post("/", calculateCalories);
  *               desiredWeight:
  *                 type: number
  *                 example: 75
+ *               rhFactor:
+ *                 type: string
+ *                 nullable: true
+ *                 enum: ["+", "-", null]
  *               bloodType:
  *                 type: integer
  *                 enum: [1, 2, 3, 4]

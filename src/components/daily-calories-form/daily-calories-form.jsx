@@ -1,3 +1,5 @@
+import RhFactor from '../rh-factor'
+import { BLOOD_TYPES } from '../../utils/blood-types'
 import { useState } from 'react';
 import { api, apiError } from '../../redux/api';
 import styles from './daily-calories-form.module.css';
@@ -54,10 +56,11 @@ export function DailyCaloriesForm({ onResult }) {
       return;
     }
 
+    const rhFactor = new FormData(e.currentTarget).get('rhFactor') || null;
     setError('');
     try {
       const body = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Number(value)]));
-      const result = await calculate(body).unwrap();
+      const result = await calculate({ ...body, rhFactor }).unwrap();
       onResult(result);
     } catch (reason) {
       setError(apiError(reason));
@@ -126,7 +129,7 @@ export function DailyCaloriesForm({ onResult }) {
             <fieldset className={styles.radioGroup}>
               <legend className={styles.legend}>Blood type *</legend>
               <div className={styles.radioOptions}>
-                {[1, 2, 3, 4].map((type) => (
+                {BLOOD_TYPES.map(({ value: type, label }) => (
                   <label key={type} className={styles.radioLabel}>
                     <input
                       type="radio"
@@ -137,11 +140,12 @@ export function DailyCaloriesForm({ onResult }) {
                       className={styles.radioInput}
                     />
                     <span className={styles.radioCustom} />
-                    <span className={styles.radioText}>{type}</span>
+                    <span className={styles.radioText}>{label}</span>
                   </label>
                 ))}
               </div>
             </fieldset>
+            <RhFactor />
           </div>
         </div>
 

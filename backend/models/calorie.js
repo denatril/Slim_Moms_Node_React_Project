@@ -24,6 +24,7 @@ const calorieSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    rhFactor: { type: String, enum: ["+", "-", null], default: null },
     bloodType: {
       type: Number,
       required: true,
