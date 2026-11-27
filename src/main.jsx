@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import "modern-normalize";
 import "./index.css";
 import { store } from "./redux/store";
-import App from "./App.jsx";
+import App from "./app.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

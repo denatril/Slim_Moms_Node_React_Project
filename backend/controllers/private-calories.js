@@ -35,7 +35,7 @@ export const savePrivateCalories = async (req, res, next) => {
         forbiddenFoods,
       },
       {
-        new: true,
+        returnDocument: "after",
         upsert: true,
         runValidators: true,
       }
@@ -62,9 +62,7 @@ export const getPrivateCalories = async (req, res, next) => {
     });
 
     if (!savedData) {
-      return res.status(404).json({
-        message: "Calorie information not found",
-      });
+      return res.sendStatus(204);
     }
 
     res.status(200).json({

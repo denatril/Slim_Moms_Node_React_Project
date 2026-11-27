@@ -1,10 +1,11 @@
+import { loader } from './loader/loader-slice'
 import { persistSession } from './auth/session'
 import { configureStore } from '@reduxjs/toolkit'
 import { authReducer } from './auth/auth-slice'
 import { api } from './api'
 
 export const store = configureStore({
-  reducer: { auth: authReducer, [api.reducerPath]: api.reducer },
+  reducer: { loader, auth: authReducer, [api.reducerPath]: api.reducer },
   middleware: defaults => defaults().concat(api.middleware),
 })
 

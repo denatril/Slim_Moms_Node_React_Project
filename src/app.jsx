@@ -1,11 +1,10 @@
-import { UserInfo } from './components/user-info/user-info';
-import { api, apiError } from './redux/api';
-
+import { Header } from './components/header/header';
+import { Loader } from './components/loader/loader';
 import { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
-import { Routes, Route, Navigate, NavLink, Outlet } from 'react-router-dom';
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 
-import { MainPage } from './pages/main-page/main-page';
+const MainPage = lazy(() => import('./pages/main-page/main-page').then(module => ({ default: module.MainPage })));
 import './components/diary.css';
 
 const Login = lazy(() => import('./pages/login-page/login-page'));
@@ -14,33 +13,25 @@ const Diary = lazy(() => import('./pages/diary-page'));
 const Calculator = lazy(() => import('./pages/calculator-page'));
 
 function PrivatePages() {
-  const [logout, { error, isLoading }] = api.useLogoutMutation();
-  const user = useSelector(state => state.auth.user);
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   if (!loggedIn) {
     return <Navigate to="/login" replace />;
   }
 
-  return (
-    <>
-      <nav className="preview-nav" aria-label="Main navigation">
-        <NavLink to="/diary">Diary</NavLink>
-        <NavLink to="/calculator">Calculator</NavLink>
-        <UserInfo userName={user.name || user.email} onLogout={() => logout()} disabled={isLoading} />
-      </nav>
-      {error && <p role="alert">{apiError(error)}</p>}
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 }
 
 export default function App() {
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const loading = useSelector(state => Object.keys(state.loader).length > 0);
   const diary = <Navigate to="/diary" replace />;
 
   return (
-    <Suspense fallback={<p role="status">Loading…</p>}>
+    <>
+      <Header />
+      <Loader isLoading={loading} />
+      <Suspense fallback={<Loader isLoading />}>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={loggedIn ? diary : <Login />} />
@@ -56,6 +47,7 @@ export default function App() {
           element={<Navigate to={loggedIn ? '/diary' : '/login'} replace />}
         />
       </Routes>
-    </Suspense>
+      </Suspense>
+    </>
   );
 }

@@ -18,10 +18,10 @@
     padding-bottom: 434px;
     background-repeat: no-repeat;
     background-image:
-      url("../../assets/images/tablet_backround_strawberry-1x.png"),
-      url("../../assets/images/tablet_backround_banana-1x.png"),
-      url("../../assets/images/tablet_backround_leaves-1x.png"),
-      url("../../assets/images/tablet_backround_gray-1x.png");
+      url("../../assets/images/tablet_backround_strawberry-1x.webp"),
+      url("../../assets/images/tablet_backround_banana-1x.webp"),
+      url("../../assets/images/tablet_backround_leaves-1x.webp"),
+      url("../../assets/images/tablet_backround_gray-1x.webp");
     background-position:
       right 0px bottom 228px,
       right 0px bottom 0px,
@@ -39,10 +39,10 @@
     (min-resolution: 2dppx) {
     .page {
       background-image:
-        url("../../assets/images/tablet_backround_strawberry-2x.png"),
-        url("../../assets/images/tablet_backround_banana-2x.png"),
-        url("../../assets/images/tablet_backround_leaves-2x.png"),
-        url("../../assets/images/tablet_backround_gray-2x.png");
+        url("../../assets/images/tablet_backround_strawberry-2x.webp"),
+        url("../../assets/images/tablet_backround_banana-2x.webp"),
+        url("../../assets/images/tablet_backround_leaves-2x.webp"),
+        url("../../assets/images/tablet_backround_gray-2x.webp");
     }
   }
 
@@ -61,8 +61,8 @@
     padding-bottom: 180px;
     background-repeat: no-repeat;
     background-image:
-      url("../../assets/images/desktop_backround-1x.png"),
-      url("../../assets/images/desktop_backround_gray-1x.png");
+      url("../../assets/images/desktop_backround-1x.webp"),
+      url("../../assets/images/desktop_backround_gray-1x.webp");
     background-position:
       right 0px bottom 0px,
       right 0px bottom 0px;
@@ -76,8 +76,8 @@
     (min-resolution: 2dppx) {
     .page {
       background-image:
-        url("../../assets/images/desktop_backround-2x.png"),
-        url("../../assets/images/desktop_backround_gray-2x.png");
+        url("../../assets/images/desktop_backround-2x.webp"),
+        url("../../assets/images/desktop_backround_gray-2x.webp");
     }
   }
 

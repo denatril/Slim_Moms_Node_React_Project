@@ -43,3 +43,21 @@
     }
 
 }
+.privateMenu { display: none; }
+.toggle { background: transparent; border: 0; cursor: pointer; font-size: 20px; }
+.menuOpen {
+    position: absolute;
+    inset: 100% 0 auto;
+    min-height: 100vh;
+    background: #264061;
+    padding: 48px 20px;
+}
+.menuOpen nav { justify-content: center; }
+.menuOpen ul { flex-direction: column; }
+.menuOpen a { color: white; }
+@media (min-width: 1280px) {
+    .privateMenu, .menuOpen { display: block; position: static; min-height: auto; padding: 0; background: none; }
+    .menuOpen ul { flex-direction: row; }
+    .menuOpen a { color: #212121; }
+    .toggle { display: none; }
+}
