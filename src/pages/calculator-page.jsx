@@ -1,26 +1,26 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { saveCalculation } from '../redux/diary'
+import { api, apiError } from '../redux/api'
 import CalculatorCalorieForm from '../components/calculator-calorie-form'
 import RightSideBar from '../components/right-side-bar'
-import { getDateKey, getDisplayDate, selectDiaryProducts } from '../redux/diary-selectors'
+import { getDateKey, getDisplayDate } from '../redux/diary-selectors'
 
 export default function CalculatorPage() {
-  const dispatch = useDispatch()
-  const profile = useSelector((state) => state.diary.profile)
+  const { data: profile, error: profileError } = api.useProfileQuery()
   const today = new Date()
   const dateKey = getDateKey(today)
-  const products = useSelector(selectDiaryProducts)
-  const consumed = products
-    .filter((product) => product.date === dateKey)
-    .reduce((sum, product) => sum == null || product.calories == null ? null : sum + product.calories, 0)
+  const [saveProfile, save] = api.useSaveProfileMutation()
+  const { currentData: day, error: dayError } = api.useDayQuery(dateKey)
+  const consumed = day?.consumed ?? null
 
   return (
     <main className="diary-layout">
       <section className="calculator-main" aria-labelledby="calculator-title">
         <h1 id="calculator-title">Calculate your daily calorie intake right now</h1>
-        <CalculatorCalorieForm profile={profile} onCalculate={(values) => dispatch(saveCalculation(values))} />
+        <CalculatorCalorieForm key={profile ? "saved" : "new"} profile={profile} onCalculate={saveProfile} pending={save.isLoading} />
+        {save.error && <p role="alert">{apiError(save.error)}</p>}
       </section>
-      <RightSideBar date={getDisplayDate(today)} dailyRate={profile?.dailyRate} foods={profile?.foods} consumed={consumed} />
+      {dayError && <p role="alert">{apiError(dayError)}</p>}
+      {profileError && profileError.status !== 404 && <p role="alert">{apiError(profileError)}</p>}
+      <RightSideBar date={getDisplayDate(today)} dailyRate={profile?.calories} foods={profile?.forbiddenFoods} consumed={consumed} />
     </main>
   )
 }

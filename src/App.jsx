@@ -1,3 +1,5 @@
+import { UserInfo } from './components/user-info/user-info';
+import { api, apiError } from './redux/api';
 
 import { lazy, Suspense } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,6 +14,8 @@ const Diary = lazy(() => import('./pages/diary-page'));
 const Calculator = lazy(() => import('./pages/calculator-page'));
 
 function PrivatePages() {
+  const [logout, { error, isLoading }] = api.useLogoutMutation();
+  const user = useSelector(state => state.auth.user);
   const loggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   if (!loggedIn) {
@@ -23,7 +27,9 @@ function PrivatePages() {
       <nav className="preview-nav" aria-label="Main navigation">
         <NavLink to="/diary">Diary</NavLink>
         <NavLink to="/calculator">Calculator</NavLink>
+        <UserInfo userName={user.name || user.email} onLogout={() => logout()} disabled={isLoading} />
       </nav>
+      {error && <p role="alert">{apiError(error)}</p>}
       <Outlet />
     </>
   );

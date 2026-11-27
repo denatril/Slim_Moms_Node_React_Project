@@ -1,3 +1,4 @@
+import { readSession, sessionEnded } from './session';
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { logIn, register } from "./auth-operations";
 
@@ -11,9 +12,13 @@ const initialState = {
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: () => {
+    const session = readSession();
+    return session ? { ...initialState, ...session, isLoggedIn: true } : initialState;
+  },
   extraReducers: (builder) => {
     builder
+      .addCase(sessionEnded, () => initialState)
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;

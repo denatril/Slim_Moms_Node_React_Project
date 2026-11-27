@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logIn, register } from "../../redux/auth/auth-operations";
 import styles from "./login-form.module.css";
 
 export const LoginForm = ({ registration = false }) => {
+  const apiError = useSelector(state => state.auth.error)
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -41,6 +42,7 @@ export const LoginForm = ({ registration = false }) => {
     <div className={styles.wrapper}>
       <h1 className={styles.title}>{registration ? 'Register' : 'Log in'}</h1>
 
+      {apiError && <p role="alert">{apiError}</p>}
       <form className={styles.form} onSubmit={handleSubmit} noValidate>
         {registration && <div className={styles.fieldGroup}>
           <input className={styles.input} name="name" aria-label="Name" placeholder="Name *" value={name} onChange={(e) => setName(e.target.value)} required />
