@@ -50,7 +50,7 @@
 .calculator-main h1 { max-width: 32rem; margin: 0 0 32px; font-size: clamp(22px, 4vw, 34px); }
 .calculator-form { max-width: 510px; }
 .calculator-fields, .calculator-column { display: grid; gap: 20px; }
-.calculator-column label, .calculator-form legend { font-size: 14px; font-weight: 700; color: #565e6b; }
+.calculator-column > label { font-size: 14px; font-weight: 700; color: #565e6b; }
 .calculator-column input[type="number"] {
   display: block;
   width: 100%;
@@ -60,11 +60,6 @@
   color: #212121;
   background: transparent;
 }
-.calculator-form fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
-.calculator-form legend { padding: 0; }
-.calculator-options { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
-.calculator-options label { display: inline-flex; gap: 4px; align-items: center; }
-.calculator-options input { margin: 0; accent-color: #fc842d; }
 .calculator-form .feature-button { display: block; margin: 32px auto 0; }
 .calculator-error { color: #9c2525; font-size: 14px; }
 

@@ -1,3 +1,4 @@
+import RadioGroup from './radio-group'
 import RhFactor from './rh-factor'
 import { BLOOD_TYPES } from '../utils/blood-types'
 import { useState } from 'react'
@@ -33,17 +34,7 @@ export default function CalculatorCalorieForm({ onCalculate, profile, pending })
         </div>
         <div className="calculator-column">
           <label><input aria-label="Desired weight (kg)" placeholder="Desired weight (kg) *" name="goal" defaultValue={profile?.desiredWeight} type="number" min="0.1" step="any" required /></label>
-          <fieldset>
-            <legend>Blood type *</legend>
-            <div className="calculator-options">
-              {BLOOD_TYPES.map(({ value: type, label }) => (
-                <label key={type}>
-                  <input name="bloodType" type="radio" value={type} required defaultChecked={String(type) === String(profile?.bloodType ?? 1)} />
-                  {label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
+          <RadioGroup legend="Blood type *" name="bloodType" options={BLOOD_TYPES} defaultValue={Number(profile?.bloodType ?? 1)} required />
           <RhFactor initialValue={profile?.rhFactor} />
         </div>
       </div>

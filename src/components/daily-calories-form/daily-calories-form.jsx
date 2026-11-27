@@ -1,3 +1,4 @@
+import RadioGroup from '../radio-group'
 import RhFactor from '../rh-factor'
 import { BLOOD_TYPES } from '../../utils/blood-types'
 import { useState } from 'react';
@@ -126,25 +127,7 @@ export function DailyCaloriesForm({ onResult }) {
               />
             </label>
 
-            <fieldset className={styles.radioGroup}>
-              <legend className={styles.legend}>Blood type *</legend>
-              <div className={styles.radioOptions}>
-                {BLOOD_TYPES.map(({ value: type, label }) => (
-                  <label key={type} className={styles.radioLabel}>
-                    <input
-                      type="radio"
-                      name="bloodType"
-                      value={type}
-                      checked={values.bloodType === type}
-                      onChange={handleChange}
-                      className={styles.radioInput}
-                    />
-                    <span className={styles.radioCustom} />
-                    <span className={styles.radioText}>{label}</span>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+            <RadioGroup legend="Blood type *" name="bloodType" options={BLOOD_TYPES} value={values.bloodType} onChange={handleChange} required />
             <RhFactor />
           </div>
         </div>
