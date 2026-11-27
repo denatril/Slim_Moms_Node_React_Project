@@ -41,6 +41,21 @@ Proje kökünde `npm run lint` ve `npm run build` çalıştırın. Misafir olara
 
 ## Yayın
 
-Render üzerinde bu depodan bir Blueprint oluşturun. Üretim MongoDB adresini Render’ın istediği `DB_HOST` alanına girin ve veritabanında servisin bağlantısına izin verin. JWT anahtarı Render tarafından oluşturulur. Başlangıçta ürün kataloğu mevcut kimlikler üzerinden güncellenir. Servisin HTTPS adresinde `/api-docs/` açılmalıdır.
+### Backend · Render
 
-GitHub deposunda Pages kaynağını **GitHub Actions** olarak seçin. Actions repository variable olarak `VITE_API_URL` değerini canlı API adresine ayarlayın (sonu `/api`). Ardından **Deploy frontend** iş akışını `main` dalında çalıştırın. Proje alt yolu Pages ayarlarından alınır. İç sayfalara doğrudan gidildiğinde Pages’in özel 404 belgesi React uygulamasını yükler; ilk HTML isteğinin HTTP durum kodu 404 olur.
+Canlı API, Render üzerinde `main` dalını izleyen bir **Web Service** olarak çalışır.
+
+| Ayar | Değer |
+| --- | --- |
+| Root Directory | `backend` |
+| Build Command | `npm ci` |
+| Start Command | `npm run seed && npm start` |
+| Ortam değişkenleri | `DB_HOST`, `JWT_SECRET` |
+
+`DB_HOST` bağlantı adresinde uygulamanın veritabanı adını belirtin. Render servisinin çıkış IP aralıklarına MongoDB Atlas’ta erişim izni verin. `JWT_SECRET` için Render’da rastgele bir değer üretin. Başlangıç komutu önce ürün kataloğunu kimliklerine göre günceller, ardından API’yi başlatır. Yeni bir servis kurarken aynı komutları içeren [Blueprint dosyasını](render.yaml) da kullanabilirsiniz.
+
+### Frontend · GitHub Pages
+
+GitHub Pages kaynağını **GitHub Actions** olarak seçin. GitHub deposunda **Settings → Secrets and variables → Actions → Variables** altında `VITE_API_URL` değerini `https://slim-moms-node-react-project.onrender.com/api` olarak ayarlayın. **Deploy frontend** iş akışını `main` dalında çalıştırın.
+
+İş akışı uygulamayı depo alt yoluna göre derler. Yayın çıktısında `login/`, `register/`, `diary/` ve `calculator/` için ayrı giriş belgeleri oluşturur. Böylece GitHub Pages bu adresler doğrudan açıldığında veya yenilendiğinde uygulamayı HTTP 200 ile sunabilir. Oturum gerektiren sayfalarda erişimi React Router denetler.
