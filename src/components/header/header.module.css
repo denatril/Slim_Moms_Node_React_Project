@@ -1,79 +1,126 @@
 .header {
-    position: relative;
-    z-index: 60;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 14px 20px 12px;
-    border-bottom: 1px solid #e0e0e0;
-    background-color: #ffffff;
+  position: relative;
+  z-index: 60;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
 }
 
 .container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 @media (max-width: 767px) {
-    .header { height: 80px; display: grid; align-items: center; }
-    .header[data-private="true"]:has(.account) { margin-bottom: 40px; }
-    .account {
-        position: absolute; top: 100%; inset-inline: 0; height: 40px;
-        display: flex; justify-content: flex-end; align-items: center;
-        padding-inline: 20px; background: #eff1f3;
-    }
-    .accountOpen { display: none; }
+  .header {
+    height: 80px;
+    display: grid;
+    align-items: center;
+  }
+  .header[data-private="true"]:has(.account) {
+    margin-bottom: 40px;
+  }
+  .account {
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-inline: 20px;
+    background: #eff1f3;
+  }
+  .accountOpen {
+    display: none;
+  }
 }
 @media (min-width: 768px) {
-    .account, .accountOpen { margin-left: auto; }
+  .account,
+  .accountOpen {
+    margin-left: auto;
+  }
 }
 @media (min-width: 1280px) {
-    .header[data-private="true"] { background: linear-gradient(to right, white 59.5%, #f0f1f3 59.5%); }
+  .header[data-private="true"] {
+    background: linear-gradient(to right, white 59.5%, #f0f1f3 59.5%);
+  }
+  .header[data-private="false"] {
+    background-color: transparent;
+  }
 }
 /* TABLET */
 @media screen and (min-width: 768px) {
-    .header {
-        padding: 14px 32px;
-    }
+  .header {
+    padding: 14px 32px;
+  }
 
-    .container {
-        gap: 24px;
-    }
+  .container {
+    gap: 24px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-    .header {
-        padding: 80px 16px 20px;
-        border-bottom: none;
-    }
+  .header {
+    padding: 80px 16px 20px;
+    border-bottom: none;
+  }
 
-    .container {
-        justify-content: flex-start;
-        align-items: flex-end;
-        gap: 30px;
-    }
-
+  .container {
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 30px;
+  }
 }
-.privateMenu { display: none; }
-.toggle { background: transparent; border: 0; cursor: pointer; font-size: 20px; }
+.privateMenu {
+  display: none;
+}
+.toggle {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 20px;
+}
 .menuOpen {
-    position: absolute;
-    inset: 100% 0 auto;
-    min-height: 100vh;
-    background: #264061;
-    padding: 48px 20px;
+  position: absolute;
+  inset: 100% 0 auto;
+  min-height: 100vh;
+  background: #264061;
+  padding: 48px 20px;
 }
-.menuOpen nav { justify-content: center; }
-.menuOpen ul { flex-direction: column; }
-.menuOpen a { color: white; }
+.menuOpen nav {
+  justify-content: center;
+}
+.menuOpen ul {
+  flex-direction: column;
+}
+.menuOpen a {
+  color: white;
+}
 @media (min-width: 1280px) {
-    .privateMenu, .menuOpen { display: block; position: static; min-height: auto; padding: 0; background: none; }
-    .menuOpen ul { flex-direction: row; }
-    .menuOpen a { color: #212121; }
-    .toggle { display: none; }
+  .privateMenu,
+  .menuOpen {
+    display: block;
+    position: static;
+    min-height: auto;
+    padding: 0;
+    background: none;
+  }
+  .menuOpen ul {
+    flex-direction: row;
+  }
+  .menuOpen a {
+    color: #212121;
+  }
+  .toggle {
+    display: none;
+  }
 }
