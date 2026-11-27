@@ -1,6 +1,6 @@
 /* Mobile layout */
-.diary-layout { display: grid; grid-template-columns: 1fr; min-height: calc(100vh - 120px); color: #212121; text-align: left; }
-.diary-main { padding: 32px 20px; }
+.diary-layout { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; min-height: calc(100vh - 120px); color: #212121; text-align: left; }
+.diary-main { min-width: 0; padding: 32px 20px; }
 .diary-main h1, .diary-form label span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .diary-main h1 { font-size: 18px; margin: 0 0 12px; }
 .diary-main input { font: inherit; color: inherit; border: 0; border-bottom: 1px solid #dedede; padding: 12px 4px; min-width: 0; background: transparent; }
@@ -74,25 +74,84 @@
   .calculator-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .calculator-column { align-content: start; }
   .calculator-form .feature-button { margin-left: 0; }
-  .diary-main { padding: 64px clamp(24px, 6vw, 90px); }
+  .diary-main { padding: 96px 32px 60px; }
   .diary-form-wrap { display: block; }
   .diary-back, .diary-mobile-add { display: none; }
-  .diary-form { flex-direction: row; align-items: end; }
+  .diary-form { flex-direction: row; align-items: end; gap: 32px; margin: 36px 0 48px; }
+  .diary-form .diary-product-field { flex: 0 1 240px; }
+  .diary-form > label { flex: 0 1 104px; }
+  .diary-form > label input { text-align: right; }
+  .diary-list { max-width: 624px; }
+  .diary-item { border: 0; padding: 0; }
+  .diary-item > span { padding: 16px 0; border-bottom: 1px solid #dedede; }
+  .diary-item > span:nth-child(n+2) { text-align: right; }
+
   .diary-form button { align-self: auto; }
   .diary-item { grid-template-columns: minmax(0, 1fr) 70px 80px 32px; gap: 12px; font-size: 14px; }
-  .right-sidebar { flex-direction: row; background-image: url("../images/yaprak1.webp"); background-position: right -90px bottom -175px; background-size: 310px auto; background-repeat: no-repeat; gap: 60px; padding: 36px clamp(24px, 6vw, 90px); }
-  .right-sidebar section { flex: 1; }
+  .right-sidebar {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    flex-direction: row;
+    gap: 60px;
+    padding: 72px 32px;
+  }
+  .right-sidebar::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    width: 350px;
+    height: 320px;
+    right: 16px;
+    bottom: -68px;
+    background: url("../images/yaprak1.webp") center / contain no-repeat;
+    transform: rotate(90deg);
+  }
+  .right-sidebar section { flex: 1; max-width: 288px; }
 }
 
 /* Desktop layout */
 @media (min-width: 1280px) {
-  .diary-layout { min-height: calc(100vh - 140px); grid-template-columns: minmax(0, 1fr) 40.5%; }
-  .right-sidebar { flex-direction: column; gap: 36px; padding: 140px 64px 64px 90px; background-position: right -160px center; }
-  .right-sidebar section { flex: initial; max-width: 290px; }
-  .diary-main, .calculator-main { padding: 140px 16px 64px; }
+  .diary-layout { min-height: calc(100vh - 140px); grid-template-columns: minmax(0, 1fr) 40.5%; grid-template-rows: 1fr; }
+  .right-sidebar { flex-direction: column; gap: 52px; padding: 140px 24px 64px clamp(64px, 7.8vw, 104px); }
+  .right-sidebar::before {
+    width: 32%;
+    height: 540px;
+    top: 46px;
+    right: max(0px, calc((100vw - 1280px) / 2));
+    bottom: auto;
+    background-size: 540px auto;
+    background-position: 70% center;
+    transform: none;
+  }
+  .right-sidebar section { flex: initial; width: 270px; max-width: 64%; }
+  .diary-main, .calculator-main { padding: 140px 16px 64px max(16px, calc((100vw - 1280px) / 2)); }
   .calculator-form .feature-button { margin-left: auto; margin-right: 0; }
 }
 
 .diary-calendar { display: flex; align-items: center; }
 .diary-calendar button[aria-label="Open calendar"] { display: grid; place-items: center; width: 44px; height: 44px; border: 0; background: transparent; color: #565e6b; cursor: pointer; }
 .diary-form small[role="alert"] { color: #9c2525; }
+
+.diary-product-field { position: relative; min-width: 0; flex: 1; }
+.diary-options {
+  position: absolute;
+  z-index: 5;
+  inset: calc(100% + 4px) 0 auto;
+  max-height: min(14rem, 35vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+  background: white;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  font-size: 14px;
+}
+.diary-options li { padding: 10px 12px; overflow-wrap: anywhere; }
+.diary-options [role="option"] { cursor: pointer; }
+.diary-options [role="option"]:hover,
+.diary-options [aria-selected="true"] { background: #fff1e7; }
