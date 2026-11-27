@@ -25,12 +25,12 @@ export default function CalculatorCalorieForm({ onCalculate, profile, pending })
     <form className="calculator-form" onSubmit={submit} onChange={() => setError('')}>
       <div className="calculator-fields">
         <div className="calculator-column">
-          <label>Height (cm) *<input name="height" defaultValue={profile?.height} type="number" min="0.1" step="any" required /></label>
-          <label>Age *<input name="age" defaultValue={profile?.age} type="number" min="1" step="1" required /></label>
-          <label>Current weight (kg) *<input name="weight" defaultValue={profile?.currentWeight} type="number" min="0.1" step="any" required /></label>
+          <label><input aria-label="Height (cm)" placeholder="Height (cm) *" name="height" defaultValue={profile?.height} type="number" min="0.1" step="any" required /></label>
+          <label><input aria-label="Age" placeholder="Age *" name="age" defaultValue={profile?.age} type="number" min="1" step="1" required /></label>
+          <label><input aria-label="Current weight (kg)" placeholder="Current weight (kg) *" name="weight" defaultValue={profile?.currentWeight} type="number" min="0.1" step="any" required /></label>
         </div>
         <div className="calculator-column">
-          <label>Desired weight (kg) *<input name="goal" defaultValue={profile?.desiredWeight} type="number" min="0.1" step="any" required /></label>
+          <label><input aria-label="Desired weight (kg)" placeholder="Desired weight (kg) *" name="goal" defaultValue={profile?.desiredWeight} type="number" min="0.1" step="any" required /></label>
           <fieldset>
             <legend>Blood type *</legend>
             <div className="calculator-options">

@@ -47,6 +47,7 @@
 }
 
 .foodsList {
+    list-style: decimal;
     max-height: 8rem;
     overflow-y: auto;
     margin: 0;

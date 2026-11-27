@@ -14,14 +14,14 @@ export function Header() {
   const [menuKey, setMenuKey] = useState(null);
   const open = isLoggedIn && menuKey === key;
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-private={isLoggedIn}>
       <div className={styles.container}>
         <Logo />
         <div className={isLoggedIn ? (open ? styles.menuOpen : styles.privateMenu) : undefined}>
           <Navigation privateLinks={isLoggedIn} onNavigate={() => setMenuKey(null)} />
         </div>
         {isLoggedIn && <>
-          <UserInfo userName={user.name || user.email} onLogout={() => logout()} disabled={isLoading} />
+          <div className={open ? styles.accountOpen : styles.account}><UserInfo userName={user.name || user.email} onLogout={() => logout()} disabled={isLoading} /></div>
           <button type="button" className={styles.toggle} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setMenuKey(open ? null : key)}>{open ? '×' : '☰'}</button>
         </>}
       </div>
