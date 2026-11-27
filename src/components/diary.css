@@ -114,18 +114,29 @@
 /* Desktop layout */
 @media (min-width: 1280px) {
   .diary-layout { min-height: calc(100vh - 140px); grid-template-columns: minmax(0, 1fr) 40.5%; grid-template-rows: 1fr; }
-  .right-sidebar { flex-direction: column; gap: 52px; padding: 140px 24px 64px clamp(64px, 7.8vw, 104px); }
+  .right-sidebar {
+    --sidebar-inset: clamp(64px, 7.8vw, 104px);
+    --leaf-strip: clamp(130px, 28%, 184px);
+    flex-direction: column;
+    gap: 52px;
+    padding: 140px calc(var(--leaf-strip) + 12px) 64px var(--sidebar-inset);
+  }
   .right-sidebar::before {
-    width: 32%;
-    height: 540px;
-    top: 46px;
-    right: max(0px, calc((100vw - 1280px) / 2));
+    width: var(--leaf-strip);
+    height: 650px;
+    top: 0;
+    right: 0;
     bottom: auto;
-    background-size: 540px auto;
-    background-position: 70% center;
+    background-size: 640px auto;
+    background-position: left -285px top -10px;
     transform: none;
   }
-  .right-sidebar section { flex: initial; width: 270px; max-width: 64%; }
+  .right-sidebar section { flex: initial; width: 100%; max-width: 270px; }
+  .right-sidebar h2 { margin-bottom: 30px; letter-spacing: .035em; }
+  .right-sidebar dl, .right-sidebar ul { margin: 0; line-height: 1.6; letter-spacing: .025em; }
+  .right-sidebar dl div { margin: 0; padding-block: 4px; }
+  .right-sidebar ul { max-height: 11rem; scrollbar-width: thin; }
+  .right-sidebar li { padding-block: 4px; }
   .diary-main, .calculator-main { padding: 140px 16px 64px max(16px, calc((100vw - 1280px) / 2)); }
   .calculator-form .feature-button { margin-left: auto; margin-right: 0; }
 }
