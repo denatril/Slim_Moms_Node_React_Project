@@ -1,12 +1,11 @@
+import RadioGroup from './radio-group'
+
+const RH_OPTIONS = [
+  { value: '+', label: 'Positive (+)' },
+  { value: '-', label: 'Negative (−)' },
+  { value: '', label: 'Unspecified' },
+]
+
 export default function RhFactor({ initialValue }) {
-  return (
-    <label className="rh-factor">
-      Rh factor
-      <select name="rhFactor" defaultValue={initialValue ?? ''}>
-        <option value="">Unspecified</option>
-        <option value="+">Positive (+)</option>
-        <option value="-">Negative (−)</option>
-      </select>
-    </label>
-  )
+  return <RadioGroup legend="Rh factor" name="rhFactor" options={RH_OPTIONS} defaultValue={initialValue ?? ''} />
 }

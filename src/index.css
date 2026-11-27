@@ -61,15 +61,3 @@ button,
 input {
   font: inherit;
 }
-.rh-factor {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-  font-size: 14px;
-}
-
-.rh-factor select {
-  font: inherit;
-  padding: 4px;
-}
