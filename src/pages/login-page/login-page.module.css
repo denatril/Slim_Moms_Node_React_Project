@@ -56,6 +56,48 @@
 /* Masaüstü (1280px+) */
 @media screen and (min-width: 1280px) {
   .page {
+    min-height: 100vh;
+    margin-top: -146px;
+    padding-top: 294px;
+    padding-bottom: 64px;
+    background-repeat: no-repeat;
+    background-image:
+      url("../../assets/images/desktop_backround-1x.webp"),
+      url("../../assets/images/desktop_backround_gray-1x.webp");
+    background-position:
+      right 0px bottom 0px,
+      right 0px bottom 0px;
+    background-size:
+      980px auto,
+      602px auto;
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .page {
+      background-image:
+        url("../../assets/images/desktop_backround-2x.webp"),
+        url("../../assets/images/desktop_backround_gray-2x.webp");
+    }
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Masaüstü (1280px+) 
+@media screen and (min-width: 1280px) {
+  .page {
     min-height: calc(100vh - 80px);
     min-height: calc(100vh - 140px);
     padding-top: 148px;
@@ -94,3 +136,4 @@
   margin: 0 auto;
   padding: 0 16px;
 }
+*/
