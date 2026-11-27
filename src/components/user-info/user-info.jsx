@@ -1,7 +1,7 @@
 
 import styles from './user-info.module.css';
 
-export function UserInfo({ userName = 'User', onLogout }) {
+export function UserInfo({ userName = 'User', onLogout, disabled }) {
   return (
     <div className={styles.userInfo}>
       <span className={styles.name}>{userName}</span>
@@ -12,6 +12,7 @@ export function UserInfo({ userName = 'User', onLogout }) {
         type="button"
         className={styles.logoutBtn}
         onClick={onLogout}
+        disabled={disabled}
         aria-label={`Log out ${userName}`}
       >
         Exit
