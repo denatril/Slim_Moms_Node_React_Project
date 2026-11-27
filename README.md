@@ -2,6 +2,12 @@
 
 Mobil, tablet ve masaüstünde çalışan bir kalori hesaplayıcı ve yemek günlüğü. Arayüz React ve Vite, API Express ve MongoDB kullanır.
 
+## Teslim bağlantıları
+
+- [SlimMom uygulamasını aç](https://denatril.github.io/Slim_Moms_Node_React_Project/)
+- [Swagger üzerinden canlı API uç noktalarını incele](https://slim-moms-node-react-project.onrender.com/api-docs/)
+- [Canlı site için PageSpeed Insights analizi başlat](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fdenatril.github.io%2FSlim_Moms_Node_React_Project%2F)
+
 ## Yerel kurulum
 
 Node.js 25 ve erişilebilir bir MongoDB veritabanı ile test edilmiştir. İlk terminalde:
