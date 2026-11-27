@@ -1,5 +1,5 @@
 import { api, apiError } from '../redux/api'
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import DiaryDateCalendar from '../components/diary-date-calendar'
 import DiaryAddProductForm from '../components/diary-add-product-form'
 import DiaryProductsList from '../components/diary-products-list'
@@ -16,9 +16,12 @@ export default function DiaryPage() {
   const { currentData: day, error: dayError } = api.useDayQuery(selectedDate)
   const consumed = day?.consumed ?? null
 
+  useLayoutEffect(() => {
+    if (adding) backButton.current?.focus()
+  }, [adding])
+
   function showAddForm() {
     setAdding(true)
-    requestAnimationFrame(() => backButton.current?.focus())
   }
 
   function closeAddForm() {
